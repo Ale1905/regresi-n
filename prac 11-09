@@ -1,0 +1,25 @@
+basel,
+x<-c(42.2,42.6,43.3,43.5,43.7,44.1,44.9,45.3,45.7,45.7,45.9,46,46.2,46.2,46.8,46.8,47.1,47.2)
+y<-c(44,44,44,45,45,46,46,46,47,48,48,48,47,48,48,49,49,49)
+mod1 <- lm(y ~ x)# modelo de regresion lineal, lm da la regresión lineal
+show(mod1)#da valores
+names(mod1)#da los componentes
+summary(mod1)# resumen del modelo
+anova(mod1)
+## como puede ver la sbgorrol = .07806(std .error),
+#p-value es 2.43-10
+##en este caso el parametro de interes es b1, el cambio esperado en y
+#con un incremento en una unidad en x. la hip nula Ho: B1=0, es rechazada
+#y se acepta la alternativa de la Ha: B1=0, debido a que pvalue es un valor 
+#menor a .05 y se observa en el summary p-value
+
+
+
+####ejercicio B1 intervalos
+x<- c(635,644,711,708,836,820,810,870,856,923,878,937,948)
+y<- c(100,93,88,84,77,75,74,63,57,55,47,43,38)
+mod3<- lm(y~x)
+summary(mod3)
+anova(mod3)
+qt(.025,11)
+
