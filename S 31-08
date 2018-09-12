@@ -1,0 +1,83 @@
+#EJERCICIO 1--------------------------------------------------------------------------------------------------------------------------------
+temp<-c(170, 172,173,174,174,175,176,177,180,180,180,180,180,181,181,182,182,182,182,184,184,185,186,188)
+rela<-c(.84,1.31,1.42,1.03,1.07,1.08,1.04,1.80,1.45,1.60,1.61,2.13,2.15,.84,1.43,.90,1.81,1.94,2.68,1.49,2.52,3,1.87,3.08)
+acero<-data.frame(temp,rela)
+boxplot(acero, xlab="temperatura", ylab="relación")
+require(ggplot2)
+ggplot(data=acero,aes(x=temp,y=rela))+geom_boxplot()
+#No explica por completo y de forma única que la temperatura ya que la correlación es de 0.67,
+#que aunque es alta existen errores.
+ggplot(data=acero,aes(x=temp,y=rela))+geom_point()
+#No, ya que se prefiere una correlación de mayor o igual a 0.7 para que
+#ya que indicaría una tendencia que podría estimar el valor de la temperatura.
+#EJERICIO 2------------------------------------------------------------------------------------------------------------------------------------------------
+motor<-c(1:10)
+edad<-c(0,0,2,11,7,16,9,0,12,4)
+linea<-c(1.72,4.38,4.06,1.26,5.31,.57,3.37,3.44,.74,1.24)
+refo<-c(1.88,5.93,5.54,2.67,6.53,.74,4.94,4.89,.69,1.42)
+gasolinas<-data.frame(motor,edad,linea,refo)
+bas<-data.frame(edad,linea)
+ggplot(data=bas, aes(x=edad,y=linea))+geom_point()+geom_smooth(method=("lm"))
+re<-data.frame(edad,refo)
+ggplot(data=re, aes(x=edad,y=refo),color='red')+geom_point()+geom_smooth(method=("lm"))
+cor(edad,linea)
+cor(edad,refo)
+#Tiene una relación negativa, por lo cual conforme más años tiene el motor, menor
+#hay menor emición de NO, lo cual no tiene sentido.
+
+#EJERICIO 3------------------------------------------------------------------------------------------------------------------------------
+croma<-c(47,62,65,70,70,78,95,100,114,118,124,127,140,140,140,150,152,164,198,221)
+sensor<-c(38,62,53,67,84,79,93,106,117,116,127,114,134,139,142,170,149,154,200,215)
+hidro<-data.frame(croma,sensor)
+ggplot(data=hidro, aes(x=croma,y=sensor))+geom_point()+geom_smooth(method=("lm"))
+cor(croma,sensor)
+sxy<-cov(croma,sensor)
+sxx<-var(croma)
+show(sxy/sxx)
+#Sí existe una muy fuerte relación en las mediciones de hidrogeno con el
+#ambos métodos.
+#Ya que la pendiente de la recta estimada es 1.001, indica que es una relación
+#1 a 1, por lo que sus mediciones son iguales
+#EJERCICIO 4----------------------------------------------------------------------------------------------------
+x<-c(5.8,8.8,11,13.6,18.5,21,23.7,26,28.3,31.9,36.5,38.2,40.4)
+y<-c(7.8,8.2,6.9,5.3,4.7,4.9,4.3,2.7,2.8,1.8,1.9,1.1,.4)
+rizosfera<-data.frame(x,y)
+ggplot(data=rizosfera, aes(x=x,y=y))+geom_point()
+#La concentración de amonio y la transpiración tienen una relación muy alta
+# y negativa, lo que suguiere que entra más transpiración, menos amonio concentrado
+#El modelo de regresión simple es muy adecuado para tratar este caso.
+#EJERCICIO 5 ------------------------------------------------------
+tp<-c(56,63,68,72,74,78,83)
+al<-c(118,182,247,208,197,135,132)
+require(ggplot2)
+mozz<-data.frame(tp,al)
+#Gráfica a)
+ggplot(data=mozz,aes(x=tp,y=al))+geom_point()+scale_y_continuous("alargamiento", limits = c(0,250), breaks = seq(50,250,by=50))+scale_x_continuous("temperatura", limits = c(0,100), breaks = seq(20,100,by=20))
+#grafica b)
+ggplot(data=mozz,aes(x=tp,y=al))+geom_point()+scale_y_continuous("alargamiento", limits = c(100,250), breaks = seq(50,250,by=50))+scale_x_continuous("temperatura", limits = c(55,100), breaks = seq(20,100,by=5) )
+#¿Se prefiere al gráfica a)?
+#No, pues se deja mucho espacio que no sirve pues carece de
+#datos, en cambio la b es la indicada pues nos permite ver todos los 
+#datos aún más cerca
+#¿Qué sugieren las gráficas a) y b) de la relación de los datos?
+#Yo veo una relación cuadrática sobre los datos
+#Una parábola que abre hacia abajo vertical con un posible 
+#punto óptimo en (68,247)
+#Así esxplica que hay un intervalo creciente con respecto a la temperatua 
+#y el alargamiento, pero despues del óptimo, esta relación es decreciente.
+#EJERCICIO 6------------------------------------------------------------------
+#Análisando la gráfica de dispersión dada, podemos notar que hay una relación
+#negativa entre la frecuencia de la resonancia de la raqueta y la suma de la 
+#aceleración pico a pico, por lo que podríamos inferir que a medida que la usamos,
+#los tenistas menos vibración existe, por lo tanto el "codo de tenista"
+#sería algo de lo que no se tendría que temer
+#EJERCICIO 7---------------------------------------------------------------------
+Yest<-1800+(1.3*x)
+1800+(1.3*2500)
+#a)
+#El valor esperado de 2500 lb/pulg^2 en una resistencia acelerada es = 5050
+#b)
+#El cambio es de 1.3 lb/pulg^2 por cada que la resistencia acelerada aumente 1 lb/pulg^2
+#c)
+#incrementaria 130 lb/pulg^2
+#disminuiria 130 lb/pulg^2
